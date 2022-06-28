@@ -1,5 +1,4 @@
 import pytest
-from selenium.webdriver.common.by import By
 
 from Onboarding.onboardingScreens import onBoard, login, nav_from_home, logout, biometrics, driver, record_sync
 
