@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Upload build
+      uses: actions/upload-artifact@master
+      with:
+        name: dev
+        path: /Users/freshworksstudio/Downloads
+        env-url: FOOBAR
+    - name: Use URL for something
+      run: echo "${{ env.FOOBAR }}"
