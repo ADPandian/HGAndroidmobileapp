@@ -31,3 +31,10 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Saucelabs delete and upload
+      env:
+        SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+        SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      run: |
+        curl -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location \
+        --request DELETE 'https://api.us-west-1.saucelabs.com/v1/storage/groups/1696366' | json_pp
