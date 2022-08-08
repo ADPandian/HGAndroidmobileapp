@@ -80,7 +80,7 @@ def login():
 
 def record_sync():
     driver.open_notifications()
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 60)
     wait.until(
         EC.any_of(
             EC.text_to_be_present_in_element(
