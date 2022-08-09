@@ -110,7 +110,6 @@ def logout():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/menu_settings').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/tv_log_out').click()
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("LOG OUT")').click()
-    driver.quit()
     
     
 def protected_medication():
@@ -141,6 +140,7 @@ def protected_medication():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_access').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/et_protective_word').send_keys('keyword')
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
+    driver.quit()
 
 #
 # time.sleep(10)
