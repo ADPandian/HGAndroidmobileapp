@@ -111,6 +111,35 @@ def logout():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/tv_log_out').click()
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("LOG OUT")').click()
     driver.quit()
+    
+ def protected_medication():
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
+    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
+                        'new UiSelector().text("Log in with Virtual testing")').click()
+    driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="csn"]').send_keys('HTHGTWY14')
+    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
+    driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="passcode"]').send_keys('98914')
+    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
+    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("OK")').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/home').click()
+    driver.open_notifications()
+    wait = WebDriverWait(driver, 30)
+    wait.until(
+        EC.any_of(
+            EC.text_to_be_present_in_element(
+                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Records updated.")'),
+                'Records updated.'),
+            EC.text_to_be_present_in_element((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Failed to retrieve '
+                                                                            'records.")'),
+                                             'Failed to retrieve records.')
+        )
+    )
+    driver.press_keycode(4)
+    driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Records').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_access').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/et_protective_word').send_keys('keyword')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
 
 #
 # time.sleep(10)
