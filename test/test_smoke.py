@@ -25,6 +25,7 @@ def test_homescreen_nav():
 
 def test_logout():
     logout()
+   
     
 def test_promed():
     protected_medication()
