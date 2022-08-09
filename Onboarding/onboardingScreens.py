@@ -24,7 +24,7 @@ des_cap = dict(
     platformName='Android',
     automationName='UiAutomator2',
     app='storage:filename=app-stage-debug.apk',
-    deviceName='Google Pixel 4a (5G) GoogleAPI Emulator',
+    deviceName='Google Pixel 3 GoogleAPI Emulator',
     platformVersion='12.0',
     appiumVersion='1.22.1',
     name='first test run',
@@ -113,6 +113,7 @@ def logout():
     
     
 def protected_medication():
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
