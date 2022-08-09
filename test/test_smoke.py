@@ -28,8 +28,3 @@ def test_logout():
     
 def test_promed():
     protected_medication()
-
-#
-#
-# def test_bcsc_logout():
-#     logout()
