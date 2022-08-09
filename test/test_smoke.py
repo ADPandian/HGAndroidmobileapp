@@ -1,6 +1,6 @@
 import pytest
 
-from Onboarding.onboardingScreens import onBoard, login, nav_from_home, logout, biometrics, driver, record_sync
+from Onboarding.onboardingScreens import onBoard, login, nav_from_home, logout, biometrics, driver, record_sync, protected_medication
 
 
 def test_onboarding_next():
