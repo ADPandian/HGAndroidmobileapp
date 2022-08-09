@@ -143,6 +143,5 @@ def protected_medication():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
     driver.quit()
 
-#
 # time.sleep(10)
 # driver.quit()
