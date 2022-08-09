@@ -113,6 +113,5 @@ def logout():
     driver.quit()
 
 #
-#
 # time.sleep(10)
 # driver.quit()
