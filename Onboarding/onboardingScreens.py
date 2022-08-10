@@ -63,7 +63,8 @@ def login():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, ('new UiScrollable(new UiSelector().scrollable('
-                                                       'true)).scrollIntoView(new UiSelector().textContains("Log in with Virtual testing"))')).click()
+                                                       'true)).scrollIntoView(new UiSelector().text(\"Log in '
+                                                       'with Virtual testing\"))')).click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="csn"]').send_keys('HTHGTWY11')
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="passcode"]').send_keys('98911')
