@@ -112,11 +112,17 @@ def logout():
     
     
 def protected_medication():
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
+    wait = WebDriverWait(driver, 60)
+    wait.until(
+        EC.element_to_be_clickable((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().textContains("Log in with BC '
+                                                                  'Services Card")'))
+    )
+    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
+                        'new UiSelector().text("Log in with BC Services Card")').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
-    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
-                        'new UiSelector().text("Log in with Virtual testing")').click()
+    driver.find_element(By.ID, 'tile_virtual_device_div_id').click()
+    # driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Log in with Virtual testing")').click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="csn"]').send_keys('HTHGTWY14')
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="passcode"]').send_keys('98914')
