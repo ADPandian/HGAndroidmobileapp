@@ -1,6 +1,7 @@
 name: PY test
 
 on: 
+  workflow_dispatch:
   repository_dispatch:
     types: [my-event]
 #   push:
