@@ -27,5 +27,5 @@ def test_logout():
     logout()
    
     
-def test_promed():
-    protected_medication()
+# def test_promed():
+#     protected_medication()
