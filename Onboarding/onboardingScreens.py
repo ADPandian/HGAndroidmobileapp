@@ -101,7 +101,7 @@ def nav_from_home():
         elif nav == 'Proofs':
             driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Add proofs")').click()
         else:
-            driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Learn more")').click()
+            driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Health resources")').click()
         driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/home').click()
 
 
