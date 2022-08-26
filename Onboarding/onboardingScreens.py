@@ -23,7 +23,7 @@ url = "https://{}:{}@ondemand.us-west-1.saucelabs.com:443/wd/hub".format(sauce_u
 des_cap = dict(
     platformName='Android',
     automationName='UiAutomator2',
-    app='storage:filename=app-dev-debug.apk',
+    app='storage:filename=app-stage-debug.apk',
     deviceName='Google Pixel 3 GoogleAPI Emulator',
     platformVersion='12.0',
     appiumVersion='1.22.1',
