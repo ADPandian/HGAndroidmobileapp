@@ -148,6 +148,36 @@ def protected_medication():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/et_protective_word').send_keys('keyword')
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
     driver.quit()
+def add_proofs_form():
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/health_pass').click()
+    try:
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_add_card').click()
+    except:
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/iv_add_card').click()
+    # driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_not_now').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_enter_info').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/ed_phn').send_keys('9875023209')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/ed_dob').send_keys('1995-10-23')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/ed_dov').send_keys('2021-03-01')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_submit').click()
+    wait = WebDriverWait(driver, 30)
+    wait.until(
+        EC.text_to_be_present_in_element(
+            (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("BC Vaccine Cards")'), 'BC Vaccine Cards')
+    )
+    driver.find_element(By.XPATH, "//android.widget.ImageButton[@bounds='[28,84][224,280]']").click()
 
-# time.sleep(10)
-# driver.quit()
+
+def add_proofs_upload():
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/health_pass').click()
+    driver.push_file('/storage/emulated/0/Download/photo.jpg',
+                     source_path='/Assets/QR.png')
+    try:
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_add_card').click()
+    except:
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/iv_add_card').click()
+    # driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Add a BC vaccine record').click()
+    # driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_not_now').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_image_picker').click()
+    driver.find_element(By.XPATH, "//android.widget.ImageView[@bounds='[84,1058][489,1463]']").click()
+    driver.find_element(By.XPATH, "//android.widget.ImageButton[@bounds='[28,84][224,280]']").click()
