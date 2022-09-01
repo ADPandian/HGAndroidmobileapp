@@ -24,7 +24,7 @@ des_cap = dict(
     platformName='Android',
     automationName='UiAutomator2',
     app='storage:filename=app-stage-debug.apk',
-    deviceName='Google Pixel 3 GoogleAPI Emulator',
+    deviceName='Google Pixel 6 Pro GoogleAPI Emulator',
     platformVersion='12.0',
     appiumVersion='1.22.1',
     name='first test run',
