@@ -171,7 +171,7 @@ def add_proofs_form():
 def add_proofs_upload():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/health_pass').click()
     driver.push_file('/storage/emulated/0/Download/photo.jpg',
-                     source_path='https://raw.githubusercontent.com/ADPandian/HGAndroidmobileapp/main/Assets/QR.png')
+                     source_path='HGAndroidmobileapp/Assets/QR.png')
     try:
         driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_add_card').click()
     except:
