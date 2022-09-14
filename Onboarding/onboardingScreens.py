@@ -10,13 +10,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# des_cap = dict(
-#     deviceName='adp',
-#     platformName='Android',
-#     app='//Users//freshworksstudio//PycharmProjects//healthGatewayMobile//APK//healthGateway-stage.apk'
-# )
-# driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', des_cap)
-# driver.implicitly_wait(10)
 sauce_username = 'freshworks-studio'
 sauce_access_key = '32f8ecd5-e87d-4eff-8e1b-53c596f16985'
 url = "https://{}:{}@ondemand.us-west-1.saucelabs.com:443/wd/hub".format(sauce_username, sauce_access_key)
@@ -62,9 +55,10 @@ def biometrics():
 def login():
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
     driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
-    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, ('new UiScrollable(new UiSelector().scrollable('
-                                                       'true)).scrollIntoView(new UiSelector().text(\"Log in '
-                                                       'with Virtual testing\"))')).click()
+#     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, ('new UiScrollable(new UiSelector().scrollable('
+#                                                        'true)).scrollIntoView(new UiSelector().text(\"Log in '
+#                                                        'with Virtual testing\"))')).click()
+    driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, ("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains('Log in with Virtual testing').instance(0))")).click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="csn"]').send_keys('HTHGTWY11')
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="passcode"]').send_keys('98911')
