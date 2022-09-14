@@ -24,8 +24,8 @@ def test_home_screen_nav():
     nav_from_home()
 
 
-def test_vaccine_card_upload():
-    add_proofs_upload()
+# def test_vaccine_card_upload():
+#     add_proofs_upload()
 
 
 def test_vaccine_card_form():
