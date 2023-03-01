@@ -49,6 +49,7 @@ class onBoard:
         )
         driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
         driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
+        driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
         driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Get started').click()
 
     def skip(self):
