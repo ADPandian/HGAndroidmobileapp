@@ -10,11 +10,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-#
 # des_cap = dict(
 #     deviceName='adp',
 #     platformName='Android',
-#     app='//Users//Aravind.Elangovan//PycharmProjects//HGAndorid//APK//app-stage-debug.apk'
+#     app='//Users//Aravind.Elangovan//PycharmProjects//HGAndorid//APK//app-stage-debug-signed.apk'
 # )
 # driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', des_cap)
 # driver.implicitly_wait(10)
@@ -50,7 +49,7 @@ class onBoard:
         driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
         driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
         driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
-        driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Get started').click()
+        driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Next').click()
 
     def skip(self):
         driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/tv_skip').click()
@@ -58,21 +57,21 @@ class onBoard:
 
 
 def biometrics():
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_auth').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_auth').click()
     for i in range(4):
         driver.press_keycode(7)
     driver.press_keycode(66)
 
 
 def login():
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_login').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_continue').click()
 
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
                         'new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("Log in with Virtual testing")').click()
-#     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, ('new UiScrollable(new UiSelector().scrollable('
-#                                                        'true)).scrollIntoView(new UiSelector().text(\"Log in '
-#                                                        'with Virtual testing\"))')).click()
+    # driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
+    #                     'new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("Log in with Virtual testing").instance(0))').click()
+
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="csn"]').send_keys('HTHGTWY11')
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="passcode"]').send_keys('98911')
@@ -97,7 +96,7 @@ def record_sync():
         )
     )
     driver.press_keycode(4)
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/home').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/home').click()
 
 
 def nav_from_home():
@@ -113,8 +112,12 @@ def nav_from_home():
 
 
 def logout():
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/menu_settings').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/tv_log_out').click()
+    wait1 = WebDriverWait(driver, 60)
+    wait1.until(
+        EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, 'Settings'))
+    )
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/menu_settings').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/tv_log_out').click()
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("LOG OUT")').click()
     driver.quit()
 
@@ -127,8 +130,8 @@ def protected_medication():
     )
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
                         'new UiSelector().text("Log in with BC Services Card")').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_login').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_login').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_continue').click()
     driver.find_element(By.ID, 'tile_virtual_device_div_id').click()
     # driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Log in with Virtual testing")').click()
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="csn"]').send_keys('HTHGTWY14')
@@ -136,7 +139,7 @@ def protected_medication():
     driver.find_element(AppiumBy.XPATH, '//android.widget.EditText[@resource-id="passcode"]').send_keys('98914')
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continue")').click()
     driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("OK")').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/home').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/home').click()
     driver.open_notifications()
     wait = WebDriverWait(driver, 30)
     wait.until(
@@ -151,24 +154,24 @@ def protected_medication():
     )
     driver.press_keycode(4)
     driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Records').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_access').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/et_protective_word').send_keys('keyword')
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_continue').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_access').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/et_protective_word').send_keys('keyword')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_continue').click()
     driver.quit()
 
 
 def add_proofs_form():
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/health_pass').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/health_pass').click()
     try:
-        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_add_card').click()
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_add_card').click()
     except:
-        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/iv_add_card').click()
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/iv_add_card').click()
     # driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_not_now').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_enter_info').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/ed_phn').send_keys('9875023209')
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/ed_dob').send_keys('1995-10-23')
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/ed_dov').send_keys('2021-03-01')
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_submit').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_enter_info').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/ed_phn').send_keys('9875023209')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/ed_dob').send_keys('1995-10-23')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/ed_dov').send_keys('2021-03-01')
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_submit').click()
     wait = WebDriverWait(driver, 30)
     wait.until(
         EC.text_to_be_present_in_element(
@@ -178,16 +181,15 @@ def add_proofs_form():
 
 
 def add_proofs_upload():
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/health_pass').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/health_pass').click()
     driver.push_file('/storage/emulated/0/Download/photo.jpg',
                      source_path='https://raw.githubusercontent.com/ADPandian/HGAndroidmobileapp/main/Assets/QR.png')
     try:
-        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_add_card').click()
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_add_card').click()
     except:
-        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/iv_add_card').click()
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/iv_add_card').click()
     # driver.find_element(AppiumBy.ACCESSIBILITY_ID, 'Add a BC vaccine record').click()
     # driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_not_now').click()
-    driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/btn_image_picker').click()
+    driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/btn_image_picker').click()
     driver.find_element(By.XPATH, "//android.widget.ImageView[@bounds='[84,1058][489,1463]']").click()
     driver.find_element(By.XPATH, "//android.widget.ImageButton[@bounds='[28,84][224,280]']").click()
-
