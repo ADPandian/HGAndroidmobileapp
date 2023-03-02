@@ -108,7 +108,7 @@ def nav_from_home():
             driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Add proofs")').click()
         else:
             driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Health resources")').click()
-        driver.find_element(By.ID, 'ca.bc.gov.myhealth:id/home').click()
+        driver.find_element(By.ID, 'ca.bc.gov.myhealth.stage:id/home').click()
 
 
 def logout():
